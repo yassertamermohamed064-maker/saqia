@@ -142,7 +142,7 @@ export function CustomersPage({ navigate }: CustomersPageProps) {
           address: cust.address_text || cust.address || 'العنوان غير متوفر',
           totalOrders: totalOrders,
           totalSpent: calculatedSpent,
-          status: savedStatuses[cust.id] || 'active',
+          status: cust.is_active === false ? 'suspended' : (savedStatuses[cust.id] || 'active'),
         };
       });
 
@@ -177,13 +177,19 @@ export function CustomersPage({ navigate }: CustomersPageProps) {
     );
   }
 
-  const toggleStatus = (id: string, currentStatus: 'active' | 'suspended') => {
+  const toggleStatus = async (id: string, currentStatus: 'active' | 'suspended') => {
     const newStatus = currentStatus === 'active' ? 'suspended' : 'active';
+    const newIsActive = newStatus === 'active';
     setCustomers(prev => prev.map(c => (c.id === id ? { ...c, status: newStatus } : c)));
 
     const savedStatuses = JSON.parse(localStorage.getItem('customer_statuses') || '{}');
     savedStatuses[id] = newStatus;
     localStorage.setItem('customer_statuses', JSON.stringify(savedStatuses));
+
+    await supabase
+      .from('customers')
+      .update({ is_active: newIsActive, updated_at: new Date().toISOString() })
+      .eq('id', id);
   };
 
   const deleteCustomer = async (phone: string, name: string, id: string) => {
