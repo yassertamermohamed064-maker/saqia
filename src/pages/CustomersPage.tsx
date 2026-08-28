@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Users, Trash2, Ban, CheckCircle, Search, Droplets, Phone, MapPin } from 'lucide-react';
+import { Users, Trash2, Ban, CircleCheck as CheckCircle, Search, Droplets, Phone, MapPin } from 'lucide-react';
 import { DashboardHeader } from './DashboardPage';
 import { useSettings } from '@/hooks/useSettings';
 import { useAdminAuth } from '@/lib/adminAuth';

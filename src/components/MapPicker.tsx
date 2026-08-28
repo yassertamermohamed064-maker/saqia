@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MapPin, Navigation, ExternalLink, Loader2 } from 'lucide-react';
+import { MapPin, Navigation, ExternalLink, Loader as Loader2 } from 'lucide-react';
 
 interface MapPickerProps {
   lat: number | null;

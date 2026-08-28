@@ -1,23 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import {
-  Droplets,
-  Save,
-  Check,
-  Plus,
-  X,
-  MapPin,
-  Phone,
-  MessageSquare,
-  Image,
-  Eye,
-  Building2,
-  Loader2,
-  Upload,
-  Trash2,
-  Clock,
-  RotateCcw,
-  AlertTriangle,
-} from 'lucide-react';
+import { Droplets, Save, Check, Plus, X, MapPin, Phone, MessageSquare, Image, Eye, Building2, Loader as Loader2, Upload, Trash2, Clock, RotateCcw, TriangleAlert as AlertTriangle } from 'lucide-react';
 import { DashboardHeader } from '@/pages/DashboardPage';
 import { useSettings } from '@/hooks/useSettings';
 import { useAdminAuth } from '@/lib/adminAuth';

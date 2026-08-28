@@ -1,21 +1,5 @@
 import { useState, useEffect } from 'react';
-import {
-  ArrowRight,
-  Droplets,
-  MapPin,
-  FileText,
-  Loader2,
-  AlertCircle,
-  CheckCircle2,
-  Edit3,
-  LogOut,
-  MessageCircle,
-  User,
-  Phone,
-  Clock,
-  Sparkles,
-  Code2,
-} from 'lucide-react';
+import { ArrowRight, Droplets, MapPin, FileText, Loader as Loader2, CircleAlert as AlertCircle, CircleCheck as CheckCircle2, CreditCard as Edit3, LogOut, MessageCircle, User, Phone, Clock, Sparkles, Code as Code2 } from 'lucide-react';
 
 import { Logo } from '@/components/Logo';
 import { MapPicker } from '@/components/MapPicker';

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { LayoutDashboard, ClipboardList, Settings, Droplets, TrendingUp, Clock, CheckCircle2, AlertCircle, ArrowLeft, Calendar, LogOut, Users } from 'lucide-react';
+import { LayoutDashboard, ClipboardList, Settings, Droplets, TrendingUp, Clock, CircleCheck as CheckCircle2, CircleAlert as AlertCircle, ArrowLeft, Calendar, LogOut, Users } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Logo } from '@/components/Logo';
 import { useSettings } from '@/hooks/useSettings';

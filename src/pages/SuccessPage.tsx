@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CheckCircle, Droplets, Home, MapPin, Phone, Clock, Loader2, AlertCircle, MessageCircle } from 'lucide-react';
+import { CircleCheck as CheckCircle, Droplets, Chrome as Home, MapPin, Phone, Clock, Loader as Loader2, CircleAlert as AlertCircle, MessageCircle } from 'lucide-react';
 import { Logo } from '@/components/Logo';
 import { useSettings } from '@/hooks/useSettings';
 import { supabase } from '@/lib/supabase';

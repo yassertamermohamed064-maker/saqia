@@ -1,24 +1,5 @@
 import { useState } from 'react';
-import {
-  Droplets,
-  ArrowRight,
-  User,
-  Phone,
-  Lock,
-  Loader2,
-  AlertCircle,
-  Eye,
-  EyeOff,
-  LogIn,
-  UserPlus,
-  MapPin,
-  Building,
-  Navigation,
-  Compass,
-  Check,
-  X,
-  HelpCircle,
-} from 'lucide-react';
+import { Droplets, ArrowRight, User, Phone, Lock, Loader as Loader2, CircleAlert as AlertCircle, Eye, EyeOff, LogIn, UserPlus, MapPin, Building, Navigation, Compass, Check, X, CircleHelp as HelpCircle } from 'lucide-react';
 import { Logo } from '@/components/Logo';
 import { MapPicker } from '@/components/MapPicker';
 import { useSettings } from '@/hooks/useSettings';

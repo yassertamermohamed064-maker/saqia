@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Droplets, MapPin, Clock, Shield, Truck, Phone, ChevronLeft, Star, Navigation, LogIn, UserCircle } from 'lucide-react';
+import { Droplets, MapPin, Clock, Shield, Truck, Phone, ChevronLeft, Star, Navigation, LogIn, CircleUser as UserCircle } from 'lucide-react';
 import { Logo } from '@/components/Logo';
 import { useSettings } from '@/hooks/useSettings';
 import { useAuth } from '@/lib/auth';
