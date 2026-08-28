@@ -49,6 +49,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (result.error === 'not_found') return { error: 'لا يوجد حساب بهذا الرقم' };
       if (result.error === 'wrong_password') return { error: 'كلمة المرور غير صحيحة' };
       if (result.error === 'no_password') return { error: 'هذا الحساب لا يدعم تسجيل الدخول بكلمة مرور' };
+      if (result.error === 'account_suspended') return { error: 'عذراً، هذا الحساب موقوف من قبل الإدارة' };
       return { error: 'فشل تسجيل الدخول' };
     }
     const c: Customer = {
