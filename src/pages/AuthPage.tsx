@@ -22,7 +22,7 @@ export function AuthPage({ navigate }: AuthPageProps) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  // Customer signup extra fields - إدخال رقم الهاتف بشكل حر ومباشر
+  // Customer signup extra fields
   const [name, setName] = useState('');
   const [phoneInput, setPhoneInput] = useState('');
 
@@ -134,9 +134,23 @@ export function AuthPage({ navigate }: AuthPageProps) {
     setSubmitting(true);
 
     if (mode === 'login') {
-      const { error: err } = await loginCustomer(identifier.trim(), password);
+      // تعديل هنا للتحقق من بيانات العميل وحالته (موقف أم لا)
+      const result = await loginCustomer(identifier.trim(), password);
       setSubmitting(false);
-      if (err) { setError(err); return; }
+
+      if (result.error) { 
+        setError(result.error); 
+        return; 
+      }
+
+      // التحقق من حالة الحساب إذا كانت الدالة ترجع بيانات العميل (user / customer / status)
+      // يمكنك تعديل الاسم حسب ما ترجعه دالة loginCustomer لديك (مثل result.user أو result.customer)
+      const customerData = (result as any).user || (result as any).customer || result;
+      if (customerData && (customerData.status === 'موقف' || customerData.status === 'inactive' || customerData.status === 'suspended')) {
+        setError('عذراً، هذا الحساب موقوف من قبل الإدارة ولا يمكنه تسجيل الدخول.');
+        return;
+      }
+
       navigate({ name: 'order' });
     } else {
       const fullAddressParts = [
@@ -216,7 +230,6 @@ export function AuthPage({ navigate }: AuthPageProps) {
 
         <form onSubmit={handleSubmit} className="bg-white/95 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl space-y-5 border border-white/20">
           
-          {/* Red Alert Note informing user that phone number is their login identifier */}
           <div className="p-3.5 rounded-2xl bg-rose-50 border border-rose-200/80 flex items-start gap-3 shadow-sm">
             <div className="w-7 h-7 rounded-xl bg-rose-100 flex items-center justify-center text-rose-600 shrink-0 mt-0.5">
               <AlertCircle className="w-4 h-4" />
@@ -244,7 +257,6 @@ export function AuthPage({ navigate }: AuthPageProps) {
             </div>
           )}
 
-          {/* Phone / Identifier */}
           <div>
             <label className="block text-sm font-semibold text-slate-700 mb-2">
               <span className="flex items-center gap-1.5">
@@ -280,7 +292,6 @@ export function AuthPage({ navigate }: AuthPageProps) {
             )}
           </div>
 
-          {/* Password */}
           <div>
             <label className="block text-sm font-semibold text-slate-700 mb-2">
               <span className="flex items-center gap-1.5">
@@ -307,7 +318,6 @@ export function AuthPage({ navigate }: AuthPageProps) {
             </div>
           </div>
 
-          {/* Warning Box for Forgot Password (Only in Login Mode) */}
           {mode === 'login' && (
             <div className="p-3.5 rounded-2xl bg-amber-50 border border-amber-200/80 flex items-start gap-3 shadow-sm">
               <div className="w-7 h-7 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600 shrink-0 mt-0.5">
@@ -319,7 +329,6 @@ export function AuthPage({ navigate }: AuthPageProps) {
             </div>
           )}
 
-          {/* Map & Location Section */}
           {mode === 'signup' && (
             <div className="space-y-4 pt-3 border-t border-slate-200/60">
               <div className="flex items-center justify-between">
@@ -329,7 +338,6 @@ export function AuthPage({ navigate }: AuthPageProps) {
                 </label>
               </div>
 
-              {/* أزرار التحديد */}
               <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
@@ -350,7 +358,6 @@ export function AuthPage({ navigate }: AuthPageProps) {
                 </button>
               </div>
 
-              {/* معاينة الموقع */}
               <div 
                 onClick={openManualMapModal}
                 className="h-32 w-full rounded-2xl overflow-hidden border-2 border-blue-200 shadow-inner bg-blue-50/50 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-blue-100/50 transition-all p-4 text-center"
@@ -366,7 +373,6 @@ export function AuthPage({ navigate }: AuthPageProps) {
                 </span>
               </div>
 
-              {/* Detailed Address Field */}
               <div>
                 <label className="block text-sm font-semibold text-slate-700 mb-1.5">
                   <span className="flex items-center gap-1.5">
@@ -383,7 +389,6 @@ export function AuthPage({ navigate }: AuthPageProps) {
                 />
               </div>
 
-              {/* Building Details */}
               <div>
                 <label className="block text-sm font-semibold text-slate-700 mb-1.5">
                   رقم الشقة أو الدور <span className="text-slate-400 font-normal text-xs">(اختياري)</span>
@@ -426,7 +431,6 @@ export function AuthPage({ navigate }: AuthPageProps) {
           </button>
         </form>
 
-        {/* النص باللون الذهبي الراقي في الأسفل */}
         <p className="text-center text-xs text-blue-200 mt-6">
           {mode === 'login' ? 'ليس لديك حساب؟ ' : 'لديك حساب بالفعل؟ '}
           <button
@@ -439,7 +443,6 @@ export function AuthPage({ navigate }: AuthPageProps) {
         </p>
       </div>
 
-      {/* نافذة الخريطة التفاعلية الحقيقية */}
       {showMapModal && (
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4" dir="rtl">
           <div className="bg-white w-full max-w-xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
