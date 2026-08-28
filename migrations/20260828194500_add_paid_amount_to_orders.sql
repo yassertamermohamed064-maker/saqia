@@ -1,0 +1,1 @@
+ALTER TABLE orders ADD COLUMN paid_amount NUMERIC DEFAULT 0;

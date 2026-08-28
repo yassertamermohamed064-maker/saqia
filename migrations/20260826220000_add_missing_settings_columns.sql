@@ -1,0 +1,5 @@
+ALTER TABLE settings 
+ADD COLUMN IF NOT EXISTS work_hours_from TEXT DEFAULT '8:00 صباحاً',
+ADD COLUMN IF NOT EXISTS work_hours_to TEXT DEFAULT '10:00 مساؤً',
+ADD COLUMN IF NOT EXISTS admin_email TEXT,
+ADD COLUMN IF NOT EXISTS admin_password TEXT;

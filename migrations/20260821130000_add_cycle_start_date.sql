@@ -1,0 +1,1 @@
+ALTER TABLE settings ADD COLUMN IF NOT EXISTS cycle_start_date timestamptz DEFAULT now();
